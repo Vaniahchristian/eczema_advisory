@@ -1,9 +1,10 @@
+import 'package:eczema_advisory/screens/profile_screen.dart';
 import 'package:eczema_advisory/screens/reports/reports_screen.dart';
 import 'package:flutter/material.dart';
 import 'screens/home/home_screen.dart';
 import 'screens/diagnosis/diagnosis_screen.dart';
 import 'screens/chat/chat_screen.dart';
-import 'screens/profile/profile_screen.dart';
+//import 'screens/profile/profile_screen.dart';
 import 'screens/auth/login_screen.dart';
 import 'screens/auth/register_screen.dart';
 import 'screens/appointments/appointments_screen.dart';
