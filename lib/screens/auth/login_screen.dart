@@ -56,17 +56,12 @@ class LoginScreen extends StatelessWidget {
               const SizedBox(height: 24),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => const MainScreen(),
-                    ),
-                  );
+                  Navigator.pushReplacementNamed(context, '/home');
                 },
                 style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 32,
+                    vertical: 16,
                   ),
                 ),
                 child: const Text(
@@ -81,8 +76,7 @@ class LoginScreen extends StatelessWidget {
                   const Text("Don't have an account?"),
                   TextButton(
                     onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (_) => const RegisterScreen()));
+                      Navigator.pushNamed(context, '/register');
                     },
                     child: const Text('Sign Up'),
                   ),

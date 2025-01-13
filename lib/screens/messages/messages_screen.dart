@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:eczema_advisory/services/api_service.dart';
-import 'package:eczema_advisory/services/websocket_service.dart';
+//import 'package:provider/provider.dart';
+//import 'package:eczema_advisory/services/api_service.dart';
+//import 'package:eczema_advisory/services/websocket_service.dart';
 import 'package:intl/intl.dart';
 
 class MessagesScreen extends StatefulWidget {
@@ -19,35 +19,35 @@ class _MessagesScreenState extends State<MessagesScreen> {
   void initState() {
     super.initState();
     _loadConversations();
-    _setupWebSocket();
+   // _setupWebSocket();
   }
 
-  void _setupWebSocket() {
-    final webSocketService = Provider.of<WebSocketService>(context, listen: false);
-    webSocketService.onMessageReceived = (data) {
-      // TODO: Handle new message
-      _loadConversations();
-    };
-  }
+  // void _setupWebSocket() {
+  //   final webSocketService = Provider.of<WebSocketService>(context, listen: false);
+  //   webSocketService.onMessageReceived = (data) {
+  //     // TODO: Handle new message
+  //     _loadConversations();
+  //   };
+  // }
 
   Future<void> _loadConversations() async {
     setState(() {
       _isLoading = true;
     });
 
-    try {
-      final apiService = Provider.of<ApiService>(context, listen: false);
-      // TODO: Implement get conversations API
-      // _conversations = await apiService.getConversations();
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error loading conversations: $e')),
-      );
-    } finally {
-      setState(() {
-        _isLoading = false;
-      });
-    }
+    // try {
+    //   final apiService = Provider.of<ApiService>(context, listen: false);
+    //   // TODO: Implement get conversations API
+    //   // _conversations = await apiService.getConversations();
+    // } catch (e) {
+    //   ScaffoldMessenger.of(context).showSnackBar(
+    //     SnackBar(content: Text('Error loading conversations: $e')),
+    //   );
+    // } finally {
+    //   setState(() {
+    //     _isLoading = false;
+    //   });
+    // }
   }
 
   @override
@@ -192,7 +192,7 @@ class _ChatScreenState extends State<ChatScreen> {
   void initState() {
     super.initState();
     _loadMessages();
-    _setupWebSocket();
+    //_setupWebSocket();
   }
 
   @override
@@ -202,35 +202,35 @@ class _ChatScreenState extends State<ChatScreen> {
     super.dispose();
   }
 
-  void _setupWebSocket() {
-    final webSocketService = Provider.of<WebSocketService>(context, listen: false);
-    webSocketService.joinRoom(widget.doctorId);
-    webSocketService.onMessageReceived = (data) {
-      if (data['senderId'] == widget.doctorId) {
-        setState(() {
-          _messages.insert(0, data);
-        });
-      }
-    };
-  }
+  // void _setupWebSocket() {
+  //   final webSocketService = Provider.of<WebSocketService>(context, listen: false);
+  //   webSocketService.joinRoom(widget.doctorId);
+  //   webSocketService.onMessageReceived = (data) {
+  //     if (data['senderId'] == widget.doctorId) {
+  //       setState(() {
+  //         _messages.insert(0, data);
+  //       });
+  //     }
+  //   };
+  // }
 
   Future<void> _loadMessages() async {
     setState(() {
       _isLoading = true;
     });
 
-    try {
-      final apiService = Provider.of<ApiService>(context, listen: false);
-      _messages = await apiService.getMessages(widget.doctorId);
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error loading messages: $e')),
-      );
-    } finally {
-      setState(() {
-        _isLoading = false;
-      });
-    }
+    // try {
+    //   final apiService = Provider.of<ApiService>(context, listen: false);
+    //   _messages = await apiService.getMessages(widget.doctorId);
+    // } catch (e) {
+    //   ScaffoldMessenger.of(context).showSnackBar(
+    //     SnackBar(content: Text('Error loading messages: $e')),
+    //   );
+    // } finally {
+    //   setState(() {
+    //     _isLoading = false;
+    //   });
+    // }
   }
 
   Future<void> _sendMessage() async {
@@ -239,30 +239,30 @@ class _ChatScreenState extends State<ChatScreen> {
 
     _messageController.clear();
 
-    try {
-      final apiService = Provider.of<ApiService>(context, listen: false);
-      final webSocketService = Provider.of<WebSocketService>(context, listen: false);
+    // try {
+    //   final apiService = Provider.of<ApiService>(context, listen: false);
+    //   final webSocketService = Provider.of<WebSocketService>(context, listen: false);
 
-      final messageData = {
-        'content': message,
-        'receiverId': widget.doctorId,
-      };
+    //   final messageData = {
+    //     'content': message,
+    //     'receiverId': widget.doctorId,
+    //   };
 
-      await apiService.sendMessage(messageData);
-      webSocketService.sendMessage(messageData);
+    //   await apiService.sendMessage(messageData);
+    //   webSocketService.sendMessage(messageData);
 
-      setState(() {
-        _messages.insert(0, {
-          'content': message,
-          'senderId': 'me',
-          'timestamp': DateTime.now().toIso8601String(),
-        });
-      });
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error sending message: $e')),
-      );
-    }
+    //   setState(() {
+    //     _messages.insert(0, {
+    //       'content': message,
+    //       'senderId': 'me',
+    //       'timestamp': DateTime.now().toIso8601String(),
+    //     });
+    //   });
+    // } catch (e) {
+    //   ScaffoldMessenger.of(context).showSnackBar(
+    //     SnackBar(content: Text('Error sending message: $e')),
+    //   );
+    // }
   }
 
   @override

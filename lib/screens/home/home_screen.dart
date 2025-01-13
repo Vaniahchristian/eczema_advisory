@@ -125,7 +125,20 @@ class HomeScreen extends StatelessWidget {
                       return Card(
                         child: InkWell(
                           onTap: () {
-                            // Handle action tap
+                            switch (action['label']) {
+                              case 'New Diagnosis':
+                                Navigator.pushNamed(context, '/diagnosis');
+                                break;
+                              case 'Book Appointment':
+                                Navigator.pushNamed(context, '/appointments');
+                                break;
+                              case 'Chat with Doctor':
+                                Navigator.pushNamed(context, '/chat');
+                                break;
+                              case 'View Reports':
+                                Navigator.pushNamed(context, '/reports');
+                                break;
+                            }
                           },
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
