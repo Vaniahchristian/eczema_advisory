@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../services/firebase_auth_service.dart';
+//import '../../services/firebase_auth_service.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -28,28 +27,28 @@ class _RegisterScreenState extends State<RegisterScreen> {
     if (!_formKey.currentState!.validate()) return;
 
     setState(() => _isLoading = true);
-    try {
-      await context.read<FirebaseAuthService>().createUserWithEmailAndPassword(
-            email: _emailController.text.trim(),
-            password: _passwordController.text.trim(),
-          );
-      if (mounted) {
-        Navigator.of(context).pushReplacementNamed('/login');
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Registration successful! Please login.')),
-        );
-      }
-    } catch (e) {
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(e.toString())),
-        );
-      }
-    } finally {
-      if (mounted) {
-        setState(() => _isLoading = false);
-      }
-    }
+    // try {
+    //   await context.read<FirebaseAuthService>().createUserWithEmailAndPassword(
+    //         email: _emailController.text.trim(),
+    //         password: _passwordController.text.trim(),
+    //       );
+    //   if (mounted) {
+    //     Navigator.of(context).pushReplacementNamed('/login');
+    //     ScaffoldMessenger.of(context).showSnackBar(
+    //       const SnackBar(content: Text('Registration successful! Please login.')),
+    //     );
+    //   }
+    // } catch (e) {
+    //   if (mounted) {
+    //     ScaffoldMessenger.of(context).showSnackBar(
+    //       SnackBar(content: Text(e.toString())),
+    //     );
+    //   }
+    // } finally {
+    //   if (mounted) {
+    //     setState(() => _isLoading = false);
+    //   }
+    // }
   }
 
   @override
@@ -66,49 +65,70 @@ class _RegisterScreenState extends State<RegisterScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                TextFormField(
+                TextField(
+                  //border:
+                  
                   controller: _emailController,
-                  decoration: const InputDecoration(labelText: 'Email'),
+                  decoration:  InputDecoration(labelText: 'Email',
+                  prefixIcon: Icon(Icons.email),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  )),
                   keyboardType: TextInputType.emailAddress,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your email';
-                    }
-                    if (!value.contains('@')) {
-                      return 'Please enter a valid email';
-                    }
-                    return null;
-                  },
+                  // validator: (value) {
+                  //   if (value == null || value.isEmpty) {
+                  //     return 'Please enter your email';
+                  //   }
+                  //   if (!value.contains('@')) {
+                  //     return 'Please enter a valid email';
+                  //   }
+                  //   return null;
+                  // },
                 ),
                 const SizedBox(height: 16),
-                TextFormField(
+                TextField(
                   controller: _passwordController,
-                  decoration: const InputDecoration(labelText: 'Password'),
+                  decoration:  InputDecoration(labelText: 'Password',
+                  border: OutlineInputBorder(
+                   borderRadius:  BorderRadius.circular(12),
+
+                  ),
+                  prefixIcon: Icon(Icons.lock),
+                  ),
+
+                  
+                  
                   obscureText: true,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your password';
-                    }
-                    if (value.length < 6) {
-                      return 'Password must be at least 6 characters';
-                    }
-                    return null;
-                  },
+                  // validator: (value) {
+                  //   if (value == null || value.isEmpty) {
+                  //     return 'Please enter your password';
+                  //   }
+                  //   if (value.length < 6) {
+                  //     return 'Password must be at least 6 characters';
+                  //   }
+                  //   return null;
+                  // },
                 ),
                 const SizedBox(height: 16),
-                TextFormField(
+                TextField(
                   controller: _confirmPasswordController,
-                  decoration: const InputDecoration(labelText: 'Confirm Password'),
+                  decoration:  InputDecoration(labelText: 'Confirm Password',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  prefixIcon: Icon(Icons.lock),
+                  
+                  ),
                   obscureText: true,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please confirm your password';
-                    }
-                    if (value != _passwordController.text) {
-                      return 'Passwords do not match';
-                    }
-                    return null;
-                  },
+                  // validator: (value) {
+                  //   if (value == null || value.isEmpty) {
+                  //     return 'Please confirm your password';
+                  //   }
+                  //   if (value != _passwordController.text) {
+                  //     return 'Passwords do not match';
+                  //   }
+                  //   return null;
+                  // },
                 ),
                 const SizedBox(height: 24),
                 ElevatedButton(

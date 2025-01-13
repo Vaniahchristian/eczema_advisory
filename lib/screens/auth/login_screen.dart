@@ -1,3 +1,4 @@
+import 'package:eczema_advisory/screens/auth/register_screen.dart';
 import 'package:flutter/material.dart';
 import '../../main.dart';
 
@@ -55,10 +56,10 @@ class LoginScreen extends StatelessWidget {
               const SizedBox(height: 24),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.pushReplacement(
+                  Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const MainScreen(),
+                      builder: (_) => const MainScreen(),
                     ),
                   );
                 },
@@ -80,7 +81,8 @@ class LoginScreen extends StatelessWidget {
                   const Text("Don't have an account?"),
                   TextButton(
                     onPressed: () {
-                      // Navigate to register screen
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (_) => const RegisterScreen()));
                     },
                     child: const Text('Sign Up'),
                   ),
