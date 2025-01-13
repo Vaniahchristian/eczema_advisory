@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base href="$FLUTTER_BASE_HREF">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="A new Flutter project.">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="eczema_advisory">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png"/>
+
+  <title>eczema_advisory</title>
+  <link rel="manifest" href="manifest.json">
+
+  <script src="flutter.js" defer></script>
+</head>
+<body>
+  <script>
+    window.addEventListener('load', async function() {
+      // Initialize Flutter
+      const flutter = await new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = 'flutter.js';
+        script.async = true;
+        script.onload = () => resolve(window.flutter);
+        script.onerror = reject;
+        document.body.appendChild(script);
+      });
+
+      try {
+        await flutter.load();
+        await window.flutterWebRenderer;
+      } catch (e) {
+        console.error('Failed to load Flutter:', e);
+      }
+    });
+  </script>
+
+  <!-- Firebase Configuration -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    
+    const firebaseConfig = {
+      apiKey: "AIzaSyCD-n96IV8PkAA5GjZbreEdporOeE-ozP4",
+      authDomain: "eczema-4a3c3.firebaseapp.com",
+      projectId: "eczema-4a3c3",
+      storageBucket: "eczema-4a3c3.firebasestorage.app",
+      messagingSenderId: "369279568292",
+      appId: "1:369279568292:web:4fb0726568b5fe935b5931"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    window.fbApp = app;
+  </script>
+
+  <script src="main.dart.js" type="application/javascript"></script>
+</body>
+</html>
